@@ -11,7 +11,7 @@ module.exports = {
         dialectModule: require('mysql2'),
         dialectOptions: {
             ssl: {
-                rejectUnauthorized: false, // kalau pakai cloud MySQL/TiDB yang pakai SSL
+                rejectUnauthorized: false,
             },
         },
         logging: false,

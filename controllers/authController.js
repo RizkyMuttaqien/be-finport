@@ -7,6 +7,10 @@ class AuthController {
     static async register(req, res) {
         try {
             const { email, password, role } = req.body;
+            const existingUser = await User.findOne({ where: { email } });
+            if (existingUser) {
+                return response.error(res, 'Email already registered', 400);
+            }
             const hash = await bcrypt.hash(password, 10);
             const user = await User.create({ email, password: hash, role });
             response.success(res, 'User registered successfully', user);
