@@ -16,6 +16,6 @@ router.get("/reports/:id", auth, ReportController.getById);
 router.put("/reports/:id", auth, ReportController.update);
 router.delete("/reports/:id", auth, ReportController.delete);
 
-router.post("/check", auth, authorizeRole('user'), CheckController.checkText);
+router.post("/check", auth, authorizeRole(['user', 'admin']), CheckController.checkText);
 
 module.exports = router;
