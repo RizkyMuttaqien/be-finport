@@ -8,6 +8,7 @@ module.exports = {
         host: process.env.DB_HOST,
         port: process.env.DB_PORT || 3306,
         dialect: process.env.DB_DIALECT || 'mysql',
+        dialectModule: require('mysql2'),
         dialectOptions: {
             ssl: {
                 rejectUnauthorized: false, // kalau pakai cloud MySQL/TiDB yang pakai SSL
@@ -22,6 +23,7 @@ module.exports = {
         host: process.env.DB_HOST,
         port: process.env.DB_PORT || 3306,
         dialect: process.env.DB_DIALECT || 'mysql',
+        dialectModule: require('mysql2'),
         dialectOptions: {
             ssl: {
                 rejectUnauthorized: false,
