@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
             <body style="font-family: Arial; text-align: center; padding: 40px;">
                 <h1>Finport API</h1>
                 <p>Gunakan koleksi Postman berikut untuk mencoba API.</p>
-                <a href="http://localhost:5000/download-postman">
+                <a href="https://be-finport.vercel.app/download-postman">
                     <button style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
                         Download Postman Collection
                     </button>
