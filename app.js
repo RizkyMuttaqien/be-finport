@@ -6,12 +6,11 @@ const cors = require("cors");
 const app = express();
 
 app.use(cors({
-    origin: "*",
+    origin: "https://fe-finport.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
 }));
 
-app.options("*", cors());
 app.use(express.json());
 app.use("/api", routes);
 app.get("/", (req, res) => {
