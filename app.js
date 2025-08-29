@@ -2,14 +2,8 @@
 const express = require("express");
 const routes = require("./routes");
 const path = require("path");
-const cors = require("cors");
 const app = express();
 
-app.use(cors({
-    origin: "https://fe-finport.vercel.app",
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    credentials: true,
-}));
 
 app.use(express.json());
 app.use("/api", routes);
