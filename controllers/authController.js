@@ -23,10 +23,10 @@ class AuthController {
         try {
             const { email, password } = req.body;
             const user = await User.findOne({ where: { email } });
-            if (!user) return response.error(res, "User not found", 404);
+            if (!user) return response.error(res, "Invalid email or password", 404);
 
             const valid = await bcrypt.compare(password, user.password);
-            if (!valid) return response.error(res, "Invalid password", 401);
+            if (!valid) return response.error(res, "Invalid email or password", 401);
 
             const token = jwt.sign(
                 { id: user.id, role: user.role },
@@ -35,6 +35,20 @@ class AuthController {
             );
 
             response.success(res, 'Login successful', { token });
+        } catch (err) {
+            response.error(res, err.message, 500);
+        }
+    }
+
+    static async logout(req, res) {
+        try {
+            const token = req.headers.authorization?.split(" ")[1];
+            if (!token) return response.error(res, "No token provided", 401);
+
+            jwt.verify(token, process.env.JWT_SECRET, (err) => {
+                if (err) return response.error(res, "Invalid token", 401);
+                response.success(res, "Logout successful");
+            });
         } catch (err) {
             response.error(res, err.message, 500);
         }

@@ -2,19 +2,14 @@
 const express = require("express");
 const routes = require("./routes");
 const path = require("path");
+const cors = require("cors");
 const app = express();
 
-app.use((req, res, next) => {
-    // CORS
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.setHeader("Referrer-Policy", "no-referrer")
-    if (req.method === "OPTIONS") {
-        return res.sendStatus(200);
-    }
-    next();
-});
+app.use(cors({
+    origin: "https://be-finport.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true,
+}));
 
 app.use(express.json());
 app.use("/api", routes);
